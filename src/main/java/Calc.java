@@ -3,13 +3,17 @@ import java.util.Scanner;
 public class Calc {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String input = scanner.next();
+        System.out.print("Enter new line: ");
+        String input = scanner.nextLine();
         double answer = 0;
         while (true) {
             if (input.equals("-")) break;
-            input = deBrackets(input);
+            input = extractFromBrackets(input);
 
             System.out.println(input);
+
+            System.out.print("Enter new line: ");
+            input = scanner.nextLine();
         }
 //        if (isBracketsPresent(input) & isBracketsValid(input)) {
 //            answer = evalBrackets(input);
@@ -18,11 +22,11 @@ public class Calc {
 //        }
     }
 
-    private static String deBrackets(String input) {
+    private static String extractFromBrackets(String input) {
         String pureLine = input;
         if (isBracketsValid(input)) {
             int startEntry = input.indexOf("(");
-            int lastEntry = input.lastIndexOf(")");
+            int lastEntry = input.lastIndexOf(")")>0?input.lastIndexOf(")"):input.length();
             pureLine = input.substring(startEntry + 1, lastEntry);
         }
         return pureLine;
