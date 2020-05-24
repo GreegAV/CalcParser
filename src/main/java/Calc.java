@@ -8,9 +8,13 @@ public class Calc {
         double answer = 0;
         while (true) {
             if (input.equals("-")) break;
-            input = extractFromBrackets(input);
+            while (isBracketsPresent(input) & isBracketsValid(input)) {
+                input = extractFromBrackets(input);
+                System.out.println(input);
+            }
 
-            System.out.println(input);
+
+//            System.out.println(input);
 
             System.out.print("Enter new line: ");
             input = scanner.nextLine();
@@ -26,7 +30,7 @@ public class Calc {
         String pureLine = input;
         if (isBracketsValid(input)) {
             int startEntry = input.indexOf("(");
-            int lastEntry = input.lastIndexOf(")")>0?input.lastIndexOf(")"):input.length();
+            int lastEntry = input.lastIndexOf(")") > 0 ? input.lastIndexOf(")") : input.length();
             pureLine = input.substring(startEntry + 1, lastEntry);
         }
         return pureLine;
@@ -41,6 +45,14 @@ public class Calc {
     }
 
     public static boolean isBracketsValid(String input) {
+        int openBracket = 0;
+        int closeBracket = 0;
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == ')') closeBracket++;
+            if (input.charAt(i) == '(') openBracket++;
+        }
+        if (openBracket != closeBracket)
+            return false;
         if (input.contains("(") & input.contains(")")) {
             int startEntry = input.indexOf("(");
             int lastEntry = input.lastIndexOf(")");
@@ -50,7 +62,13 @@ public class Calc {
     }
 
     public static boolean isBracketsPresent(String input) {
-        return input.contains("(") & input.contains(")");
+        if (input.contains("(") & input.contains(")")) {
+//            System.out.println("Present.");
+            return true;
+        } else {
+//            System.out.println("Absent");
+            return false;
+        }
     }
 
 

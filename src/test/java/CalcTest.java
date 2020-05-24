@@ -21,14 +21,16 @@ class CalcTest {
         assertFalse(Calc.isBracketsValid("(()"));
         assertFalse(Calc.isBracketsValid("(())"));
         assertFalse(Calc.isBracketsValid("())"));
-        assertFalse(Calc.isBracketsValid("((1))"));
-        assertFalse(Calc.isBracketsValid("((12))"));
+
+
         assertFalse(Calc.isBracketsValid("((123)))"));
     }
 
     @Test
     void shouldBeTrue() {
         assertTrue(Calc.isBracketsValid("((123))"));
+        assertTrue(Calc.isBracketsValid("((1))"));
+        assertTrue(Calc.isBracketsValid("((12))"));
     }
 
     @Test
